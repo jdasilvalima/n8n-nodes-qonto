@@ -3,6 +3,9 @@ import { INodeType, INodeTypeDescription } from 'n8n-workflow';
 import {
 	clientOperations,
   transactionOperations,
+  beneficiaryOperations,
+  clientInvoiceOperations,
+  externalTransferOperations,
 } from './descriptions';
 
 export class Qonto implements INodeType {
@@ -40,8 +43,20 @@ export class Qonto implements INodeType {
         noDataExpression: true,
         options: [
           {
+            name: 'Beneficiary',
+            value: 'beneficiary',
+          },
+          {
             name: 'Client',
             value: 'client',
+          },
+          {
+            name: 'Client Invoice',
+            value: 'clientInvoice',
+          },
+          {
+            name: 'External Transfer',
+            value: 'externalTransfer',
           },
           {
             name: 'Transaction',
@@ -52,6 +67,9 @@ export class Qonto implements INodeType {
       },
       ...clientOperations,
       ...transactionOperations,
+      ...beneficiaryOperations,
+      ...clientInvoiceOperations,
+      ...externalTransferOperations,
 		]
 	};
 }
